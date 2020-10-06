@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mpantel@aegean.gr"]
 
   spec.summary       = %q{Easy way to configure and register reverse ssh tunnels for iot devices by keysharing over https to manage and enjoy}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.description   = %q{Easy way to configure and register reverse ssh tunnels for iot devices by keysharing over https to manage and enjoy}
   spec.homepage      = "https://github.com/mpantel/ssh4iot"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
@@ -26,4 +26,16 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_runtime_dependency 'rake', '~> 12.0'
+  spec.add_runtime_dependency 'openssl'
+  spec.add_runtime_dependency 'net-ssh'
+  spec.add_runtime_dependency 'whenever'
+  spec.add_runtime_dependency 'sinatra'
+  spec.add_runtime_dependency 'jwt'
+  spec.add_runtime_dependency 'mongoid'
+
+  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'byebug', '~> 3.0'
+
 end
