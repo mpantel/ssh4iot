@@ -1,5 +1,5 @@
-FROM ruby:2.7.2-alpine
-RUN apk add git
+FROM ruby:2.7.2
+
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
@@ -32,3 +32,14 @@ CMD ["ruby -v"]
 #Encoding
 #
 #By default, Ruby inherits the locale of the environment in which it is run. For most users running Ruby on their desktop systems, that means it's likely using some variation of *.UTF-8 (en_US.UTF-8, etc). In Docker however, the default locale is C, which can have unexpected results. If your application needs to interact with UTF-8, it is recommended that you explicitly adjust the locale of your image/container via -e LANG=C.UTF-8 or ENV LANG C.UTF-8.
+
+#The following example starts a Redis container and configures it to always restart unless it is explicitly stopped or Docker is restarted.
+#
+#$ docker run -d --restart unless-stopped redis
+#
+#This command changes the restart policy for an already running container named redis.
+#
+#$ docker update --restart unless-stopped redis
+#docker run -p 2020:80 -it --name ssh4iot --label traefik.backend=ssh4iot ssh4iot sh
+#docker run -v ssh4iot:/home --expose 80 -p 2020:22 -it --name ssh4iot --label traefik.backend=ssh4iot --label traefik.frontend.rule="Host:myhost.example.com;PathPrefixStrip:/ssh4iot" --label traefik.frontend.entryPoints=http,https ssh4iot sh
+
