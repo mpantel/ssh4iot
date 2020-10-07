@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'openssl'
   spec.add_runtime_dependency 'net-ssh'
   spec.add_runtime_dependency 'whenever'
-  spec.add_runtime_dependency 'thin'
+  #spec.add_runtime_dependency 'thin'
   spec.add_runtime_dependency 'sinatra','~> 2.0'
   spec.add_runtime_dependency 'jwt'
   spec.add_runtime_dependency 'mongoid','~> 7.0'

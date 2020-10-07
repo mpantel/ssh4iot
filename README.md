@@ -1,5 +1,7 @@
 # ssh4iot
-Easy way to configure and register reverse ssh tunnels for iot devices by keysharing over https to manage and enjoy
+Easy way to configure and register reverse ssh tunnels for iot devices by key sharing over https to manage and enjoy
+
+**PRERELEASE**
 
 ## Installation
 

@@ -1,16 +1,14 @@
 FROM ruby:2.7.2
 
 # throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
+RUN bundle config --global frozen 1 \
+&& apt-get update && apt-get install -y  openssh-server \
+&& apt-get autoremove && apt-get clean && apt-get autoclean && rm -rf /var/lib/apt/lists/* \
+&& service ssh start #\
+#&& gem install ssh4iot
 
-WORKDIR /usr/src/app
-COPY . .
-COPY Gemfile Gemfile.lock ./
-RUN bundle install
 
-#
-
-CMD ["ruby -v"]
+CMD ["ruby ssh4iot/exe/ssh4iot-server -p 80 -e production"]
 
 #You can then build and run the Ruby image:
 #
@@ -41,5 +39,5 @@ CMD ["ruby -v"]
 #
 #$ docker update --restart unless-stopped redis
 #docker run -p 2020:80 -it --name ssh4iot --label traefik.backend=ssh4iot ssh4iot sh
-#docker run -v ssh4iot:/home --expose 80 -p 2020:22 -it --name ssh4iot --label traefik.backend=ssh4iot --label traefik.frontend.rule="Host:myhost.example.com;PathPrefixStrip:/ssh4iot" --label traefik.frontend.entryPoints=http,https ssh4iot sh
+##docker run -v ssh4iot:/home --expose 80 -p 2020:22 -it --name ssh4iot --label traefik.backend=ssh4iot --label traefik.frontend.rule="Host:myhost.example.com;PathPrefixStrip:/ssh4iot" --label traefik.frontend.entryPoints=http,https ssh4iot sh
 
