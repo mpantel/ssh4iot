@@ -4,11 +4,11 @@ FROM ruby:2.7.2
 RUN bundle config --global frozen 1 \
 && apt-get update && apt-get install -y  openssh-server \
 && apt-get autoremove && apt-get clean && apt-get autoclean && rm -rf /var/lib/apt/lists/* \
-&& service ssh start #\
-#&& gem install ssh4iot
+&& service ssh start
+RUN gem install ssh4iot
 
 
-CMD ["ruby ssh4iot/exe/ssh4iot-server -p 80 -e production"]
+CMD ["ssh4iot-server -p 80 -e production"]
 
 #You can then build and run the Ruby image:
 #
